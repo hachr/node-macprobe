@@ -12,13 +12,11 @@ function Parser() {
 require('util').inherits(Parser, EventEmitter);
 
 Parser.prototype.process = function (line) {
-
 	if (MAC_REGEX.test(line)) {
 		if (this.item) {
-			this.emit('item', this.item);
+			this.emit('item', {item:this.item, mac: line.slice(1, 10).trim()});
 		}
 		this.item = {};
-		this.item['mac'] = line.slice(1, 10);
 		this.item['address'] = [];
 	} else if (this.item) {
 		if (this.item.name) {
@@ -33,14 +31,12 @@ Parser.prototype.end = function(){
 	this.emit('end');
 };
 
-
-
 var outfile = path.join(__dirname, 'oui.json');
 var parser = new Parser();
 var json = {};
-parser.on('item',function(item){
-	var mac = item.mac.replace(/-/g,'');
-	json[mac] = item;
+parser.on('item',function(data){
+	var mac = data.mac.replace(/-/g,'');
+	json[mac] = data.item;
 });
 
 parser.on('end', function(){
@@ -51,7 +47,7 @@ var file = path.join(__dirname, 'oui.txt');
 
 fs.readFile(file, function (err, data) {
 	if (!err) {
-		var split = data.toString().split("\r\n");
+		var split = data.toString().split(require('os').EOL);
 		for (var i = 0; i < split.length; i++) {
 			var line = split[i];
 			if (line.length > 10) {
@@ -59,5 +55,7 @@ fs.readFile(file, function (err, data) {
 			}
 		}
 		parser.end();
-	}
+	}else{
+            console.error(err);
+        }
 });
