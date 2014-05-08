@@ -6,6 +6,7 @@ var MAC_REGEX = /\s[0-9A-F]{2}-[0-9A-F]{2}-[0-9A-F]{2}(.*)/g;
 
 function Parser() {
 	this.item = null;
+	this.mac = null;
 	EventEmitter.call(this);
 }
 
@@ -13,10 +14,11 @@ require('util').inherits(Parser, EventEmitter);
 
 Parser.prototype.process = function (line) {
 	if (MAC_REGEX.test(line)) {
-		if (this.item) {
-			this.emit('item', {item:this.item, mac: line.slice(1, 10).trim()});
+		if (this.item && this.item.address) {
+			this.emit('item', {item:this.item, mac: this.mac});
 		}
 		this.item = {};
+		this.mac = line.slice(1, 10).trim();
 		this.item['address'] = [];
 	} else if (this.item) {
 		if (this.item.name) {
