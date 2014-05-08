@@ -12,9 +12,6 @@ function Parser() {
 require('util').inherits(Parser, EventEmitter);
 
 Parser.prototype.process = function (line) {
-	if(line.indexOf('000E58')){
-		console.log(line);
-	}
 	if (MAC_REGEX.test(line)) {
 		if (this.item) {
 			this.emit('item', {item:this.item, mac: line.slice(1, 10).trim()});

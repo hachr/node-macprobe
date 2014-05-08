@@ -3291,15 +3291,6 @@
     ],
     "name": "LG Electronics Inc."
   },
-  "000001": {
-    "address": [
-      "M/S 105-50C",
-      "800 PHILLIPS ROAD",
-      "WEBSTER NY 14580",
-      "UNITED STATES"
-    ],
-    "name": "XEROX CORPORATION"
-  },
   "000002": {
     "address": [
       "ZEROX SYSTEMS INSTITUTE",
@@ -115058,13 +115049,21 @@
     ],
     "name": "EMKO ELEKTRONIK SAN VE TIC AS"
   },
-  "30055C": {
+  "2CFAA2": {
     "address": [
       "211 Mount Airy Road",
       "Basking Ridge NJ 07920",
       "UNITED STATES"
     ],
     "name": "Avaya, Inc"
+  },
+  "30055C": {
+    "address": [
+      "26801 West Agoura Rd",
+      "Calabasas CA 91301",
+      "UNITED STATES"
+    ],
+    "name": "Alcatel-Lucent"
   },
   "300B9C": {
     "address": [
