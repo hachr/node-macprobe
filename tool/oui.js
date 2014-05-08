@@ -12,6 +12,9 @@ function Parser() {
 require('util').inherits(Parser, EventEmitter);
 
 Parser.prototype.process = function (line) {
+	if(line.indexOf('000E58')){
+		console.log(line);
+	}
 	if (MAC_REGEX.test(line)) {
 		if (this.item) {
 			this.emit('item', {item:this.item, mac: line.slice(1, 10).trim()});
@@ -48,7 +51,8 @@ var file = path.join(__dirname, 'oui.txt');
 fs.readFile(file, function (err, data) {
 	if (!err) {
 		var split = data.toString().split(require('os').EOL);
-		for (var i = 0; i < split.length; i++) {
+		//skip the header
+		for (var i = 7; i < split.length; i++) {
 			var line = split[i];
 			if (line.length > 10) {
 				parser.process(line);
