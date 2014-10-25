@@ -14,13 +14,14 @@ This is what I did to build on the pi.  It could be different on other platform 
 
 ### Dependencies
 
-    1. sudo apt-get install build-essential
-    2. sudo apt-get install libssl-dev
-    3. sudo apt-get install libnl-3-dev libnl-genl-3-dev
-    4. git clone https://github.com/hachr/aircrack-ng
-    5. cd aircrack-ng
-    6. make sqlite=true
-    7. sudo make install
+    1. sudo apt-get update 
+    2. sudo apt-get install build-essential
+    3. sudo apt-get install libssl-dev
+    4. sudo apt-get install libnl-3-dev libnl-genl-3-dev
+    5. git clone https://github.com/hachr/aircrack-ng
+    6. cd aircrack-ng
+    7. make sqlite=true (if you want to use airolib-ng, if not, omit it or set it to false)
+    8. sudo make install
     
 ### Running it
 
